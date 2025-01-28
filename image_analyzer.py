@@ -9,8 +9,15 @@ import time
 # Load environment variables from .env file
 load_dotenv()
 
-# Initialize OpenAI client with API key from environment
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+# Initialize OpenAI client with OpenRouter configuration
+client = OpenAI(
+    api_key=os.getenv('OPENROUTER_API_KEY'),
+    base_url="https://openrouter.ai/api/v1",
+    default_headers={
+        "HTTP-Referer": "http://localhost:3000",  # Your site URL
+        "X-Title": "Property Listings Analyzer"  # Your app name
+    }
+)
 
 
 def encode_image(image_path):
@@ -100,7 +107,7 @@ Rules:
             }
         })
 
-    print("\n🚀 Sending request to OpenAI...")
+    print("\n🚀 Sending request to OpenRouter...")
     print("⏳ Waiting for response (this may take a minute)...")
     start_time = time.time()
     
