@@ -1,2 +1,7 @@
 Companies/
 .env
+logs/
+__pycache__/
+
+
+
