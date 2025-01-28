@@ -47,7 +47,7 @@ async def get_property_urls(company_page: str, property_names: List[str]) -> Lis
             # Construct the task prompt
             task = (
                 f"go to {company_page} and open up the individual property listing for {property_name}. "
-                "You might have to scroll down, manage lazy loading, or pagination. "
+                "You might have to scroll down or back up sometimes, manage lazy loading, or pagination. "
                 "Finally return the url you went to for that individual property listing"
             )
             
