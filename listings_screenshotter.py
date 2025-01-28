@@ -110,5 +110,5 @@ def capture_viewport_screenshots(url: str) -> List[str]:
 
 # Example usage:
 if __name__ == "__main__":
-    paths = capture_viewport_screenshots("https://repcre.com/for-sale/")
+    paths = capture_viewport_screenshots("https://foresitecre.com/investment-sales/")
     print("Screenshots saved to:", paths) 

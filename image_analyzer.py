@@ -73,7 +73,7 @@ def analyze_real_estate_images(folder_path: str) -> List[str]:
     message_content = [
         {
             "type": "text",
-            "text": """Analyze these real estate listing screenshots and list ALL properties in order of appearance.
+            "text": """Analyze these real estate listing screenshots and list ALL properties in order of appearance. Do NOT list the properties that may signify that they have been sold or are under contract.
             
 Format your response EXACTLY like this, with one property per line, starting with a hyphen:
 - Property Name 1
@@ -139,7 +139,7 @@ Rules:
 
 if __name__ == "__main__":
     # Example usage when run directly
-    screenshots_folder = "levyretail/"
+    screenshots_folder = "Companies/foresitecre/"
     try:
         properties = analyze_real_estate_images(screenshots_folder)
         print(f"\nReturned value:")
