@@ -8,6 +8,7 @@ from typing import List
 async def get_property_urls(company_page: str, property_names: List[str]) -> List[tuple[str, str]]:
     """
     Get URLs for multiple property listings from a company page.
+    Limited to 20 steps per property to avoid infinite loops.
     
     Args:
         company_page: URL of the company's property listings page
@@ -50,12 +51,13 @@ async def get_property_urls(company_page: str, property_names: List[str]) -> Lis
                 "Finally return the url you went to for that individual property listing"
             )
             
-            # Create the agent
+            # Create the agent with max_steps limit
             agent = Agent(
                 task=task,
                 llm=llm,
                 use_vision=True,
-                save_conversation_path="logs/conversation.json"
+                save_conversation_path="logs/conversation.json",
+                max_steps=20
             )
 
             # Run the agent and get history
@@ -68,7 +70,7 @@ async def get_property_urls(company_page: str, property_names: List[str]) -> Lis
                 print(f"✅ Found URL: {result_url}")
                 results.append((property_name, result_url))
             else:
-                print(f"❌ No URL found for: {property_name}")
+                print(f"❌ No URL found for: {property_name} (may have exceeded 20 steps)")
                 results.append((property_name, None))
             
             if history.has_errors():
